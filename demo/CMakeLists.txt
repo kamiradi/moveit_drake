@@ -10,9 +10,7 @@ add_executable(stiffness_gui src/control_gui.cpp)
 target_link_libraries(stiffness_gui Qt5::Widgets)
 ament_target_dependencies(stiffness_gui rclcpp std_msgs)
 
-install(TARGETS stiffness_gui
-  DESTINATION lib/${PROJECT_NAME}
-)
+install(TARGETS stiffness_gui DESTINATION lib/${PROJECT_NAME})
 
 install(TARGETS pipeline_testbench_example constrained_planning_demo
         DESTINATION lib/${PROJECT_NAME})

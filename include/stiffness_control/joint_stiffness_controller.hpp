@@ -6,9 +6,11 @@
 #include <hardware_interface/loaned_state_interface.hpp>
 #include <std_msgs/msg/float64_multi_array.hpp>
 
-namespace joint_stiffness_controller {
+namespace joint_stiffness_controller
+{
 
-class JointStiffnessController : public controller_interface::ControllerInterface {
+class JointStiffnessController : public controller_interface::ControllerInterface
+{
 public:
   JointStiffnessController();
 
@@ -25,8 +27,8 @@ private:
   rclcpp::Subscription<std_msgs::msg::Float64MultiArray>::SharedPtr command_sub_;
   std::vector<double> desired_positions_;
   std::vector<double> stiffness_gains_;
-  
+
   void command_callback(const std_msgs::msg::Float64MultiArray::SharedPtr msg);
 };
 
-} // namespace joint_stiffness_controller
+}  // namespace joint_stiffness_controller
