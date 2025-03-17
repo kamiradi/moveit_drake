@@ -9,6 +9,9 @@ find_package(ament_cmake REQUIRED)
 # Common cmake code applied to all moveit packages
 find_package(moveit_common REQUIRED)
 moveit_package()
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
 
 find_package(ament_cmake REQUIRED)
 find_package(Eigen3 REQUIRED)
@@ -25,6 +28,10 @@ find_package(rviz_visual_tools REQUIRED)
 find_package(warehouse_ros REQUIRED)
 find_package(shape_msgs REQUIRED)
 find_package(ros2_control REQUIRED)
+find_package(controller_interface REQUIRED)
+find_package(hardware_interface REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(Qt5 REQUIRED COMPONENTS Widgets)
 
 generate_parameter_library(ktopt_moveit_parameters
                            parameters/ktopt_moveit_parameters.yaml)
@@ -50,6 +57,7 @@ add_library(
   src/ktopt_planning_context.cpp
   # TOPPRA
   src/add_toppra_time_parameterization.cpp
+  src/joint_stiffness_controller.cpp
   # Conversions
   src/conversions.cpp)
 
@@ -61,6 +69,10 @@ ament_target_dependencies(
   pluginlib
   rclcpp
   shape_msgs
+  rclcpp
+  controller_interface
+  hardware_interface
+  std_msgs
   ros2_control)
 target_link_libraries(moveit_drake drake::drake ktopt_moveit_parameters)
 
